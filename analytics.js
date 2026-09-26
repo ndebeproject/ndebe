@@ -37,7 +37,7 @@
         if (event.event !== '$pageview') return null;
         // Retain only the SDK's required transport fields and safe page metadata.
         const properties = {};
-        for (const key of ['token', 'distinct_id', '$cookieless_mode', '$lib', '$lib_version']) {
+        for (const key of ['token', 'distinct_id', '$cookieless_mode', '$lib', '$lib_version', '$raw_user_agent']) {
           if (Object.hasOwn(event.properties, key)) properties[key] = event.properties[key];
         }
         properties.$process_person_profile = false;
