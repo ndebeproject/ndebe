@@ -1,6 +1,8 @@
 (function () {
   'use strict';
   if (!['/', '/index.html', '/how-it-works.html', '/development.html', '/press.html'].includes(location.pathname)) return;
+  // Honour a browser privacy opt-out without requesting advertising resources.
+  if (navigator.globalPrivacyControl === true) return;
   const placements = [...document.querySelectorAll('[data-site-ad]')];
   // Arithmetic lessons can be embedded in the main editor. Only the host shows ads.
   if (!placements.length || window.self !== window.top) return;
