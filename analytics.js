@@ -3,10 +3,9 @@
   'use strict';
   const tag = document.currentScript;
   const page = tag && tag.dataset.page;
-  if (location.origin !== 'https://ndebeproject.github.io' ||
-      !location.pathname.startsWith('/ndebe/') || !page ||
+  if (location.origin !== 'https://ndebe.org' || !page ||
       navigator.doNotTrack === '1' || navigator.globalPrivacyControl === true) return;
-  const canonical = location.origin + '/ndebe/' + page;
+  const canonical = location.origin + '/' + page;
   const sdk = document.createElement('script');
   sdk.src = 'https://us-assets.i.posthog.com/static/array.js';
   sdk.async = true;
@@ -42,7 +41,7 @@
         }
         properties.$process_person_profile = false;
         properties.$current_url = canonical;
-        properties.$pathname = '/ndebe/' + page;
+        properties.$pathname = '/' + page;
         properties.$host = location.hostname;
         event.properties = properties;
         return event;
