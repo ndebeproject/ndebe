@@ -69,3 +69,6 @@ main:has(+ .site-ad:not([hidden])) {
 main:has(+ .site-ad:not([hidden])) > section:last-child {
   padding-bottom: 0;
 }
+
+/* Responsive editorial units determine their own height. */
+.site-ad-unit { height: auto; min-height: 100px; }

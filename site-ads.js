@@ -1,5 +1,6 @@
 (function () {
   'use strict';
+  if (!['/', '/index.html', '/how-it-works.html', '/development.html', '/press.html'].includes(location.pathname)) return;
   const placements = [...document.querySelectorAll('[data-site-ad]')];
   // Arithmetic lessons can be embedded in the main editor. Only the host shows ads.
   if (!placements.length || window.self !== window.top) return;
@@ -16,6 +17,8 @@
     return; // Never request or click real ads during local development.
   }
 
+  // Preview hosts must never request live ads, even if configuration is enabled.
+  if (!['ndebe.org', 'www.ndebe.org'].includes(location.hostname)) return;
   const config = window.NdebeAdsConfig || {};
   if (!config.enabled || !/^ca-pub-\d{16}$/.test(config.publisher) || !/^\d+$/.test(config.slot)) return;
 
@@ -25,6 +28,8 @@
     unit.className = 'adsbygoogle site-ad-unit';
     unit.dataset.adClient = config.publisher;
     unit.dataset.adSlot = config.slot;
+    unit.dataset.adFormat = 'auto';
+    unit.dataset.fullWidthResponsive = 'true';
     placement.append(unit);
   }
 
